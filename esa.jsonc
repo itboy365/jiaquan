@@ -1,0 +1,8 @@
+{
+  "name": "jiaquan",
+  "installCommand": "",
+  "buildCommand": "npm run build",
+  "assets": {
+    "directory": "./"
+  }
+}
