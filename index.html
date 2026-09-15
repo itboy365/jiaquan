@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>互联网数字名片</title>
+<meta name="description" content="一个九零后小伙子的互联网名片。来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。" />
+<meta name="author" content="权" />
+<meta name="theme-color" content="#faf7f2" media="(prefers-color-scheme: light)" />
+<meta name="theme-color" content="#141210" media="(prefers-color-scheme: dark)" />
+<link rel="canonical" href="https://jiaquan.top/" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="互联网数字名片" />
+<meta property="og:description" content="一个九零后小伙子的互联网名片。来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。" />
+<meta property="og:url" content="https://jiaquan.top/" />
+<meta property="og:site_name" content="互联网数字名片" />
+<meta property="og:locale" content="zh_CN" />
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="互联网数字名片" />
+<meta name="twitter:description" content="一个九零后小伙子的互联网名片。来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。" />
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "权",
+  "url": "https://jiaquan.top/",
+  "email": "me@jiaquan.top",
+  "description": "一个九零后小伙子，来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。",
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "PHP", "Python", "SQL", "MySQL", "服务器", "建站", "部署"]
+}
+</script>
+
+<style>
+  :root {
+    --bg: #faf7f2;
+    --card: #fffdfb;
+    --text: #3a3a3a;
+    --text-soft: #8a8a8a;
+    --accent: #c98b6b;
+    --accent-soft: #f3e6de;
+    --accent-alt: #6b7f6e;
+    --line: #efe9e2;
+    --line-soft: #f5f1ec;
+    --glow: rgba(201, 139, 107, 0.22);
+    --shadow-1: rgba(60, 40, 20, 0.05);
+    --shadow-2: rgba(60, 40, 20, 0.08);
+    --overlay-bg: rgba(40, 30, 20, 0.35);
+    --toast-bg: rgba(255, 253, 251, 0.98);
+    --toast-border: rgba(201, 139, 107, 0.2);
+    --toast-shadow: 0 20px 50px rgba(60, 40, 20, 0.18);
+    --toast-email-bg: rgba(201, 139, 107, 0.1);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141210;
+      --card: #1c1a17;
+      --text: #e8e3dc;
+      --text-soft: #9a938a;
+      --accent: #d9a184;
+      --accent-soft: #2a231e;
+      --accent-alt: #8aa08c;
+      --line: #2a2622;
+      --line-soft: #221f1b;
+      --glow: rgba(217, 161, 132, 0.18);
+      --shadow-1: rgba(0, 0, 0, 0.4);
+      --shadow-2: rgba(0, 0, 0, 0.5);
+      --overlay-bg: rgba(0, 0, 0, 0.55);
+      --toast-bg: rgba(28, 26, 23, 0.98);
+      --toast-border: rgba(217, 161, 132, 0.2);
+      --toast-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+      --toast-email-bg: rgba(217, 161, 132, 0.12);
+    }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body { min-height: 100%; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.8;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .glow {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--glow), transparent 70%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.6s ease;
+    opacity: 0;
+    z-index: 0;
+  }
+
+  .card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 460px;
+    background: var(--card);
+    border-radius: 20px;
+    padding: 52px 38px 26px;
+    box-shadow: 0 8px 28px var(--shadow-1), 0 1px 3px var(--shadow-2);
+    opacity: 0;
+    transform: translateY(16px);
+    animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.15s forwards;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background-color 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 36px var(--shadow-2), 0 2px 6px var(--shadow-1);
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .mark {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 22px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border: 1px solid rgba(201, 139, 107, 0.25);
+    box-shadow: 0 4px 12px rgba(201, 139, 107, 0.15);
+  }
+
+  .quote {
+    min-height: 84px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 34px;
+    padding: 0 4px;
+    transition: opacity 0.45s ease;
+  }
+
+  .quote .text {
+    font-size: 15.5px;
+    color: var(--text);
+    line-height: 1.9;
+    letter-spacing: 0.3px;
+  }
+
+  .quote .from {
+    display: block;
+    font-size: 11.5px;
+    color: var(--text-soft);
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+    min-height: 18px;
+  }
+
+  .quote .from::before {
+    content: "—— ";
+    color: var(--accent-alt);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--line);
+    margin: 0 -38px 30px;
+  }
+
+  .block {
+    margin-bottom: 26px;
+  }
+
+  .block:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .block h2 {
+    font-size: 11.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    font-weight: 600;
+    margin-bottom: 11px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .block h2::before {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  .block p {
+    font-size: 14px;
+    line-height: 2;
+    color: var(--text);
+    letter-spacing: 0.2px;
+  }
+
+  .block.skills-block {
+    padding-top: 22px;
+    border-top: 1px solid var(--line-soft);
+    margin-top: 30px;
+  }
+
+  .skill-group {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+
+  .skill-group:last-child {
+    margin-bottom: 0;
+  }
+
+  .skill-label {
+    font-size: 11px;
+    color: #c4bdb5;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    flex-shrink: 0;
+    width: 42px;
+    text-align: right;
+    padding-top: 1px;
+  }
+
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+
+  .skills span {
+    font-size: 12px;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    letter-spacing: 0.3px;
+    border: 1px solid transparent;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .skills span:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent-alt);
+  }
+
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 7px 16px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  }
+
+  .contact-link:hover,
+  .contact-link:focus-visible {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .contact-link:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  .contact-link::before {
+    content: "✉";
+    font-size: 13px;
+    opacity: 0.85;
+  }
+
+  .footer {
+    font-size: 11.5px;
+    color: #b5b0aa;
+    letter-spacing: 0.5px;
+    line-height: 1.9;
+    text-align: center;
+    padding-top: 20px;
+    margin-top: 30px;
+    border-top: 1px solid var(--line-soft);
+  }
+
+  .email-overlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    background: var(--overlay-bg);
+    backdrop-filter: blur(6px);
+  }
+
+  .email-overlay.active {
+    display: flex;
+    animation: overlayIn 0.25s ease;
+  }
+
+  .email-toast {
+    background: var(--toast-bg);
+    border: 1px solid var(--toast-border);
+    border-radius: 20px;
+    padding: 32px 34px 26px;
+    text-align: center;
+    max-width: 360px;
+    width: 90%;
+    color: var(--text);
+    box-shadow: var(--toast-shadow);
+    animation: toastIn 0.38s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .email-toast .toast-icon {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .email-toast .toast-title {
+    font-weight: 700;
+    font-size: 15px;
+    margin-bottom: 6px;
+    letter-spacing: 0.3px;
+  }
+
+  .email-toast .toast-email {
+    font-family: "SF Mono", "JetBrains Mono", Consolas, monospace;
+    font-size: 13px;
+    color: var(--accent);
+    background: var(--toast-email-bg);
+    padding: 6px 14px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 14px;
+    letter-spacing: 0.3px;
+  }
+
+  .email-toast .toast-question {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin-bottom: 20px;
+  }
+
+  .email-toast .toast-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+
+  .email-toast .btn-cancel,
+  .email-toast .btn-confirm {
+    padding: 9px 26px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    border: none;
+    font-family: inherit;
+    letter-spacing: 0.3px;
+    transition: all 0.22s ease;
+  }
+
+  .email-toast .btn-cancel {
+    background: var(--accent-soft);
+    color: var(--text-soft);
+  }
+
+  .email-toast .btn-cancel:hover {
+    background: var(--line);
+    color: var(--text);
+  }
+
+  .email-toast .btn-confirm {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .email-toast .btn-confirm:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(201, 139, 107, 0.4);
+    filter: brightness(1.05);
+  }
+
+  .email-toast .btn-cancel:focus-visible,
+  .email-toast .btn-confirm:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  @keyframes overlayIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes toastIn {
+    from { opacity: 0; transform: translateY(20px) scale(0.94); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @media (max-width: 420px) {
+    .card { padding: 40px 22px 20px; border-radius: 16px; }
+    .divider { margin: 0 -22px 24px; }
+    body { padding: 28px 16px; }
+    .skill-label { width: 36px; font-size: 10px; }
+    .quote { min-height: 92px; }
+    .email-toast { padding: 26px 22px 22px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; opacity: 1; transform: none; }
+    .glow { display: none; }
+    * { transition: none !important; }
+    .email-overlay.active,
+    .email-toast { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="glow" id="glow" aria-hidden="true"></div>
+
+<main class="card">
+  <div class="mark" aria-hidden="true">权</div>
+
+  <div class="quote" id="quote" aria-live="polite">
+    <span class="text" id="quote-text">正在加载一句…</span>
+    <span class="from" id="quote-from"></span>
+  </div>
+
+  <div class="divider"></div>
+
+  <section class="block">
+    <h2>关于我</h2>
+    <p>一个九零后小伙子，来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。从第一次碰服务器开始就没停下来，写过博客、搭过站、配过环境，也踩过不少坑。现在更想把东西做简单，把复杂留给自己。</p>
+  </section>
+
+  <section class="block">
+    <h2>喜欢</h2>
+    <p>喜欢北方小城那种不紧不慢的生活节奏，周末逛逛早市，偶尔吃点地道的小吃，偶尔去山野间转转。也喜欢一个人对着电脑鼓捣代码，看看有用的工具，拆拆装装，折腾点看起来没什么用但好玩的小东西。安静一点，简单一点，能自己掌控，就挺好。</p>
+  </section>
+
+  <section class="block skills-block">
+    <h2>用过一些</h2>
+
+    <div class="skill-group">
+      <div class="skill-label">前端</div>
+      <div class="skills">
+        <span>HTML</span>
+        <span>CSS</span>
+        <span>JS</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">后端</div>
+      <div class="skills">
+        <span>PHP</span>
+        <span>Python</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">数据</div>
+      <div class="skills">
+        <span>SQL</span>
+        <span>MySQL</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <div class="skill-label">运维</div>
+      <div class="skills">
+        <span>服务器</span>
+        <span>建站</span>
+        <span>部署</span>
+      </div>
+    </div>
+
+  </section>
+
+  <section class="block">
+    <h2>联系我</h2>
+    <a class="contact-link" id="emailTrigger" href="javascript:void(0)" title="点击复制邮箱">me@jiaquan.top</a>
+  </section>
+
+  <footer class="footer">
+    Copyright © 2026 权. All rights reserved.
+  </footer>
+</main>
+
+<div class="email-overlay" id="emailOverlay" aria-hidden="true">
+  <div class="email-toast" role="dialog" aria-modal="true" aria-labelledby="toastTitle">
+    <div class="toast-icon">📋</div>
+    <div class="toast-title" id="toastTitle">您已成功复制邮箱</div>
+    <div class="toast-email">me@jiaquan.top</div>
+    <div class="toast-question">是否发送邮件？</div>
+    <div class="toast-buttons">
+      <button class="btn-cancel" id="btnCancel" type="button">取消</button>
+      <button class="btn-confirm" id="btnConfirm" type="button">确定</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ---------- 鼠标光晕 ----------
+  const glow = document.getElementById('glow');
+  let glowTimer;
+  document.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+    glow.style.opacity = '1';
+    clearTimeout(glowTimer);
+    glowTimer = setTimeout(() => { glow.style.opacity = '0'; }, 1200);
+  });
+  document.addEventListener('mouseleave', () => {
+    glow.style.opacity = '0';
+  });
+
+  // ---------- 一言 ----------
+  const quoteEl = document.getElementById('quote');
+  const textEl = document.getElementById('quote-text');
+  const fromEl = document.getElementById('quote-from');
+  const FALLBACK = '说点想说的，写点想写的。';
+  const INTERVAL = 12000;
+
+  async function fetchQuote() {
+    const controller = new AbortController();
+    const abortTimer = setTimeout(() => controller.abort(), 3000);
+
+    try {
+      const res = await fetch(
+        'https://v1.hitokoto.cn/?encode=json&max_length=22&min_length=6',
+        { signal: controller.signal }
+      );
+      clearTimeout(abortTimer);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+
+      const data = await res.json();
+      const text = data.hitokoto || FALLBACK;
+      const from = data.from
+        ? data.from + (data.from_who ? ' · ' + data.from_who : '')
+        : '';
+
+      quoteEl.style.opacity = 0;
+      setTimeout(() => {
+        textEl.textContent = text;
+        fromEl.textContent = from;
+        quoteEl.style.opacity = 1;
+      }, 450);
+    } catch (e) {
+      clearTimeout(abortTimer);
+      console.warn('一言获取失败:', e.message || e);
+      textEl.textContent = FALLBACK;
+      fromEl.textContent = '';
+      quoteEl.style.opacity = 1;
+    }
+  }
+
+  let quoteTimer = setInterval(fetchQuote, INTERVAL);
+  fetchQuote();
+
+  quoteEl.addEventListener('mouseenter', () => clearInterval(quoteTimer));
+  quoteEl.addEventListener('mouseleave', () => {
+    clearInterval(quoteTimer);
+    quoteTimer = setInterval(fetchQuote, INTERVAL);
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      clearInterval(quoteTimer);
+    } else {
+      clearInterval(quoteTimer);
+      quoteTimer = setInterval(fetchQuote, INTERVAL);
+      fetchQuote();
+    }
+  });
+
+  window.addEventListener('beforeunload', () => clearInterval(quoteTimer));
+
+  // ---------- 邮箱复制 + 弹窗 ----------
+  const emailTrigger = document.getElementById('emailTrigger');
+  const overlay = document.getElementById('emailOverlay');
+  const btnCancel = document.getElementById('btnCancel');
+  const btnConfirm = document.getElementById('btnConfirm');
+  const emailAddr = 'me@jiaquan.top';
+  let autoCloseTimer = null;
+  let lastFocused = null;
+
+  function copyEmail() {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(emailAddr).catch(() => {});
+    }
+    const ta = document.createElement('textarea');
+    ta.value = emailAddr;
+    ta.style.position = 'fixed';
+    ta.style.left = '-9999px';
+    ta.setAttribute('readonly', '');
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(ta);
+    return Promise.resolve();
+  }
+
+  function openToast() {
+    lastFocused = document.activeElement;
+    copyEmail();
+    overlay.classList.add('active');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => btnCancel && btnCancel.focus(), 50);
+    autoCloseTimer = setTimeout(closeToast, 5000);
+  }
+
+  function closeToast() {
+    if (autoCloseTimer) {
+      clearTimeout(autoCloseTimer);
+      autoCloseTimer = null;
+    }
+    overlay.classList.remove('active');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+    }
+  }
+
+  function sendEmail() {
+    closeToast();
+    window.location.href = 'mailto:' + emailAddr;
+  }
+
+  emailTrigger.addEventListener('click', function (e) {
+    e.preventDefault();
+    openToast();
+  });
+
+  btnCancel.addEventListener('click', function (e) {
+    e.stopPropagation();
+    closeToast();
+  });
+
+  btnConfirm.addEventListener('click', function (e) {
+    e.stopPropagation();
+    sendEmail();
+  });
+
+  overlay.addEventListener('click', function (e) {
+    if (e.target === overlay) closeToast();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      closeToast();
+    }
+  });
+</script>
+
+</body>
+</html>
