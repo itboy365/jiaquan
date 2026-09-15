@@ -224,20 +224,18 @@
     letter-spacing: 0.2px;
   }
 
-  .block.skills-block {
-    padding-top: 22px;
-    border-top: 1px solid var(--line-soft);
-    margin-top: 30px;
-  }
-
   .skill-group {
     display: flex;
     align-items: baseline;
     gap: 12px;
-    margin-bottom: 10px;
+    margin-top: 12px;
   }
 
-  .skill-group:last-child {
+  .skill-group:first-of-type {
+    margin-top: 18px;
+  }
+
+  .skill-group:last-of-type {
     margin-bottom: 0;
   }
 
@@ -473,12 +471,8 @@
   </section>
 
   <section class="block">
-    <h2>喜欢</h2>
-    <p>喜欢北方小城那种不紧不慢的生活节奏，周末逛逛早市，偶尔吃点地道的小吃，偶尔去山野间转转。也喜欢一个人对着电脑鼓捣代码，看看有用的工具，拆拆装装，折腾点看起来没什么用但好玩的小东西。安静一点，简单一点，能自己掌控，就挺好。</p>
-  </section>
-
-  <section class="block skills-block">
-    <h2>用过一些</h2>
+    <h2>爱好</h2>
+    <p>一个人对着电脑鼓捣代码，看看有用的工具，拆拆装装，折腾点没什么用但好玩的小东西。也喜欢安静一点，简单一点，自己掌控就好。</p>
 
     <div class="skill-group">
       <div class="skill-label">前端</div>
@@ -513,7 +507,6 @@
         <span>部署</span>
       </div>
     </div>
-
   </section>
 
   <section class="block">
@@ -540,7 +533,6 @@
 </div>
 
 <script>
-  // ---------- 鼠标光晕 ----------
   const glow = document.getElementById('glow');
   let glowTimer;
   document.addEventListener('mousemove', (e) => {
@@ -554,7 +546,6 @@
     glow.style.opacity = '0';
   });
 
-  // ---------- 一言 ----------
   const quoteEl = document.getElementById('quote');
   const textEl = document.getElementById('quote-text');
   const fromEl = document.getElementById('quote-from');
@@ -615,7 +606,6 @@
 
   window.addEventListener('beforeunload', () => clearInterval(quoteTimer));
 
-  // ---------- 邮箱复制 + 弹窗 ----------
   const emailTrigger = document.getElementById('emailTrigger');
   const overlay = document.getElementById('emailOverlay');
   const btnCancel = document.getElementById('btnCancel');
