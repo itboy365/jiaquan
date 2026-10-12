@@ -1,30 +1,40 @@
-# 互联网数字名片
+<div align="center">
 
-一个九零后小伙子的互联网数字名片，来自河北保定。
+# 权
 
-## 🔗 在线访问
+**一张安静的互联网数字名片**
 
-https://jiaquan.top
+河北保定，独立开发者。
 
-## ✨ 页面内容
+[🌐 jiaquan.top](https://jiaquan.top) · [✉ me@jiaquan.top](mailto:me@jiaquan.top)
 
-- **关于我**：简单的自我介绍
-- **爱好**：前端、后端、数据、运维等技术栈展示
-- **联系我**：一键复制邮箱
+</div>
 
-## 🛠️ 技术栈
+---
 
-- 纯静态 HTML + CSS + JavaScript（单文件）
-- 响应式设计，适配手机 / 平板 / 桌面
-- 深色 / 浅色主题自动跟随系统
-- 一言 API（每次刷新显示随机句子）
-- 鼠标跟随光晕效果
+## 关于
 
-## 📧 联系
+我是 **权**，来自河北保定。
 
-- 邮箱：me@jiaquan.top
-- GitHub：https://github.com/itboy365
+喜欢把东西做简单，喜欢安静一点，喜欢自己掌控。
+这一页，是我的互联网名片。
 
-## 📄 许可证
+---
 
-仅用于个人展示。
+## 联系
+
+| 渠道 | 地址 |
+|---|---|
+| 邮箱 | me@jiaquan.top |
+| GitHub | [github.com/itboy365](https://github.com/itboy365) |
+| 主页 | [jiaquan.top](https://jiaquan.top) |
+
+---
+
+<div align="center">
+
+**© 2026 权**
+
+*Less is more.*
+
+</div>
