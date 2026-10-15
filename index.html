@@ -43,7 +43,7 @@
     "addressRegion": "河北",
     "addressCountry": "CN"
   },
-  "knowsAbout": ["HTML", "CSS", "JavaScript", "PHP", "Python", "SQL", "MySQL", "服务器", "建站", "部署"],
+  "knowsAbout": ["HTML", "CSS", "JavaScript", "PHP", "Python", "MySQL", "Linux", "Nginx", "Docker", "Git", "Shell"],
   "sameAs": [
     "https://github.com/itboy365"
   ]
@@ -131,7 +131,7 @@
     max-width: 460px;
     background: var(--card);
     border-radius: 20px;
-    padding: 52px 38px 26px;
+    padding: 40px 38px 26px;
     box-shadow: 0 8px 28px var(--shadow-1), 0 1px 3px var(--shadow-2);
     opacity: 0;
     transform: translateY(16px);
@@ -148,17 +148,18 @@
     to { opacity: 1; transform: translateY(0); }
   }
 
+  /* ====== 顶部：头像 + 一言 ====== */
   .mark {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 22px;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto 16px;
     border-radius: 50%;
     background: var(--accent-soft);
     color: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 600;
     letter-spacing: 1px;
     border: 1px solid rgba(201, 139, 107, 0.25);
@@ -166,19 +167,19 @@
   }
 
   .quote {
-    min-height: 84px;
+    min-height: 72px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    margin-bottom: 34px;
+    margin-bottom: 26px;
     padding: 0 4px;
     transition: opacity 0.45s ease;
   }
 
   .quote .text {
-    font-size: 15.5px;
+    font-size: 15px;
     color: var(--text);
     line-height: 1.9;
     letter-spacing: 0.3px;
@@ -188,7 +189,7 @@
     display: block;
     font-size: 11.5px;
     color: var(--text-soft);
-    margin-top: 8px;
+    margin-top: 6px;
     letter-spacing: 0.5px;
     min-height: 18px;
   }
@@ -201,7 +202,7 @@
   .divider {
     height: 1px;
     background: var(--line);
-    margin: 0 -38px 30px;
+    margin: 0 -38px 24px;
   }
 
   .block {
@@ -238,8 +239,15 @@
     line-height: 2;
     color: var(--text);
     letter-spacing: 0.2px;
+    text-indent: 2em;
   }
 
+  .block p strong {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ====== 技能标签 ====== */
   .skill-group {
     display: flex;
     align-items: baseline;
@@ -258,10 +266,9 @@
   .skill-label {
     font-size: 11px;
     color: #c4bdb5;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
+    letter-spacing: 0.1em;
     flex-shrink: 0;
-    width: 42px;
+    width: 72px;
     text-align: right;
     padding-top: 1px;
   }
@@ -289,43 +296,153 @@
     border-color: var(--accent-alt);
   }
 
-  .contact-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    padding: 7px 16px;
-    border-radius: 999px;
-    background: var(--accent-soft);
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 13px;
-    letter-spacing: 0.3px;
-    border: 1px solid transparent;
-    cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  /* ====== 作品卡片 ====== */
+  .works {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 6px;
   }
 
-  .contact-link:hover,
-  .contact-link:focus-visible {
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 14px 8px 12px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+  }
+
+  .work-card:hover {
     background: var(--accent);
     color: #fff;
-    border-color: var(--accent);
+    border-color: var(--accent-alt);
+    transform: translateY(-2px);
   }
 
-  .contact-link:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
+  .work-icon {
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 8px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  .contact-link::before {
-    content: "✉";
+  .work-card:hover .work-icon {
+    transform: scale(1.12);
+  }
+
+  .work-title {
+    display: block;
     font-size: 13px;
-    opacity: 0.85;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-bottom: 3px;
+    white-space: nowrap;
+    color: var(--text);
+    transition: color 0.25s ease;
   }
 
+  .work-desc {
+    display: block;
+    font-size: 11px;
+    color: var(--text-soft);
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    transition: color 0.25s ease;
+  }
+
+  .work-card:hover .work-title {
+    color: #fff;
+  }
+
+  .work-card:hover .work-desc {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  /* ====== 联系卡片 ====== */
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .contact-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 11px 14px;
+    border-radius: 12px;
+    background: var(--accent-soft);
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+    font-family: inherit;
+    width: 100%;
+    text-align: left;
+  }
+
+  .contact-card:hover {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent-alt);
+    transform: translateY(-2px);
+  }
+
+  .contact-icon {
+    font-size: 16px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .contact-text {
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .contact-text .contact-label {
+    color: var(--text-soft);
+    margin-right: 6px;
+    transition: color 0.25s ease;
+  }
+
+  .contact-card:hover .contact-text .contact-label {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .contact-action {
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: var(--accent);
+    color: #fff;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    flex-shrink: 0;
+    transition: background 0.25s ease, color 0.25s ease;
+  }
+
+  .contact-card:hover .contact-action {
+    background: #fff;
+    color: var(--accent);
+  }
+
+  /* ====== 页脚 ====== */
   .footer {
-    font-size: 11.5px;
-    color: #b5b0aa;
+    font-size: 12.5px;
+    color: #9a938a;
     letter-spacing: 0.5px;
     line-height: 1.9;
     text-align: center;
@@ -334,6 +451,15 @@
     border-top: 1px solid var(--line-soft);
   }
 
+  .footer .brand {
+    font-weight: 700;
+    color: var(--text);
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin: 0 0.1em;
+  }
+
+  /* ====== 邮箱弹窗 ====== */
   .email-overlay {
     position: fixed;
     inset: 0;
@@ -449,13 +575,56 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
   }
 
+  /* ====== 移动端 ====== */
+  @media (max-width: 520px) {
+    .works {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .work-card {
+      flex-direction: row;
+      align-items: center;
+      text-align: left;
+      padding: 12px 14px;
+      gap: 12px;
+    }
+
+    .work-icon {
+      margin-bottom: 0;
+      font-size: 20px;
+      flex-shrink: 0;
+      width: 24px;
+      text-align: center;
+    }
+
+    .work-card:hover .work-icon {
+      transform: none;
+    }
+
+    .work-body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .work-title {
+      margin-bottom: 2px;
+      font-size: 13.5px;
+    }
+
+    .work-desc {
+      font-size: 11.5px;
+    }
+  }
+
   @media (max-width: 420px) {
-    .card { padding: 40px 22px 20px; border-radius: 16px; }
-    .divider { margin: 0 -22px 24px; }
+    .card { padding: 32px 22px 20px; border-radius: 16px; }
+    .divider { margin: 0 -22px 20px; }
     body { padding: 28px 16px; }
-    .skill-label { width: 36px; font-size: 10px; }
-    .quote { min-height: 92px; }
+    .skill-label { width: 62px; font-size: 10px; }
+    .quote { min-height: 80px; }
     .email-toast { padding: 26px 22px 22px; }
+    .mark { width: 52px; height: 52px; font-size: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -483,55 +652,84 @@
 
   <section class="block">
     <h2>关于我</h2>
-    <p>一个九零后小伙子，来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。从第一次碰服务器开始就没停下来，写过博客、搭过站、配过环境，也踩过不少坑。现在更想把东西做简单，把复杂留给自己。</p>
-  </section>
-
-  <section class="block">
-    <h2>爱好</h2>
-    <p>一个人对着电脑鼓捣代码，看看有用的工具，拆拆装装，折腾点没什么用但好玩的小东西。也喜欢安静一点，简单一点，自己掌控就好。</p>
+    <p>一个九零后小伙子，来自河北保定，喜欢待在互联网的小角落里折腾点自己的东西。从第一次碰服务器开始就没停下来，写过博客、搭过站、配过环境，也踩过不少坑……<strong>现在只想把东西做得再简单一点点！</strong></p>
 
     <div class="skill-group">
-      <div class="skill-label">前端</div>
+      <div class="skill-label">语言</div>
       <div class="skills">
         <span>HTML</span>
         <span>CSS</span>
         <span>JS</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-label">后端</div>
-      <div class="skills">
         <span>PHP</span>
         <span>Python</span>
       </div>
     </div>
 
     <div class="skill-group">
-      <div class="skill-label">数据</div>
+      <div class="skill-label">数据·运维</div>
       <div class="skills">
-        <span>SQL</span>
+        <span>Git</span>
+        <span>Shell</span>
+        <span>Linux</span>
         <span>MySQL</span>
-      </div>
-    </div>
-
-    <div class="skill-group">
-      <div class="skill-label">运维</div>
-      <div class="skills">
-        <span>服务器</span>
-        <span>建站</span>
-        <span>部署</span>
+        <span>Nginx</span>
+        <span>Docker</span>
       </div>
     </div>
   </section>
 
   <section class="block">
+    <h2>作品</h2>
+    <div class="works">
+      <a class="work-card" href="https://www.itboy.top" target="_blank" rel="noopener" title="今日速览">
+        <span class="work-icon">📰</span>
+        <span class="work-body">
+          <span class="work-title">今日速览</span>
+          <span class="work-desc">新闻 · 热搜 · 影音</span>
+        </span>
+      </a>
+
+      <a class="work-card" href="https://itboy.top" target="_blank" rel="noopener" title="我的小工坊">
+        <span class="work-icon">🏠</span>
+        <span class="work-body">
+          <span class="work-title">我的小工坊</span>
+          <span class="work-desc">60s · 金价 · 金融</span>
+        </span>
+      </a>
+
+      <a class="work-card" href="https://henlihai.cn" target="_blank" rel="noopener" title="为人民服务">
+        <span class="work-icon">🏛️</span>
+        <span class="work-body">
+          <span class="work-title">为人民服务</span>
+          <span class="work-desc">政务服务导航</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <section class="block">
     <h2>联系我</h2>
-    <a class="contact-link" id="emailTrigger" href="javascript:void(0)" title="点击复制邮箱">me@jiaquan.top</a>
+    <div class="contacts">
+      <button class="contact-card" id="emailTrigger" type="button" title="点击复制邮箱">
+        <span class="contact-icon">✉</span>
+        <span class="contact-text">
+          <span class="contact-label">邮箱</span>me@jiaquan.top
+        </span>
+        <span class="contact-action">复制</span>
+      </button>
+
+      <a class="contact-card" href="https://github.com/itboy365" target="_blank" rel="noopener" title="GitHub">
+        <span class="contact-icon">⌨</span>
+        <span class="contact-text">
+          <span class="contact-label">GitHub</span>itboy365
+        </span>
+        <span class="contact-action">访问</span>
+      </a>
+    </div>
   </section>
 
   <footer class="footer">
-    Copyright © 2026 权. All rights reserved.
+    Copyright © 2026 <span class="brand">权</span>. 保留所有权利。
   </footer>
 </main>
 
@@ -549,6 +747,7 @@
 </div>
 
 <script>
+  /* ====== 鼠标光晕 ====== */
   const glow = document.getElementById('glow');
   let glowTimer;
   document.addEventListener('mousemove', (e) => {
@@ -562,6 +761,7 @@
     glow.style.opacity = '0';
   });
 
+  /* ====== 一言轮播 ====== */
   const quoteEl = document.getElementById('quote');
   const textEl = document.getElementById('quote-text');
   const fromEl = document.getElementById('quote-from');
@@ -622,6 +822,7 @@
 
   window.addEventListener('beforeunload', () => clearInterval(quoteTimer));
 
+  /* ====== 邮箱复制弹窗 ====== */
   const emailTrigger = document.getElementById('emailTrigger');
   const overlay = document.getElementById('emailOverlay');
   const btnCancel = document.getElementById('btnCancel');
