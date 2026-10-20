@@ -1,5 +1,5 @@
 # ==========================================
-# 贾权 · 互联网数字名片 - 爬虫协议 (robots.txt)
+# 权 · 互联网数字名片 - 爬虫协议 (robots.txt)
 # 策略：全量开放，欢迎全球所有搜索引擎及 AI 大模型收录
 # ==========================================
 
@@ -22,11 +22,11 @@ Allow: /
 User-agent: 360Spider
 Allow: /
 
-# 神马搜索
+# 神马搜索（移动端）
 User-agent: YisouSpider
 Allow: /
 
-# 字节跳动（头条 / 豆包）
+# 字节跳动（头条搜索 / 豆包）
 User-agent: Bytespider
 Allow: /
 
@@ -58,24 +58,41 @@ User-agent: Applebot
 Allow: /
 
 # ==========================================
-# 4. 全球 AI 大模型（全面拥抱，扩大个人 IP 曝光）
+# 4. 全球 AI 大模型与数据抓取（全面拥抱，疯狂曝光）
 # ==========================================
+# OpenAI (ChatGPT / ChatGPT 搜索)
 User-agent: GPTBot
 Allow: /
 User-agent: ChatGPT-User
 Allow: /
 User-agent: OAI-SearchBot
 Allow: /
+
+# Anthropic (Claude)
 User-agent: ClaudeBot
 Allow: /
+
+# 谷歌 AI (Gemini)
 User-agent: Google-Extended
 Allow: /
+
+# 苹果 AI
 User-agent: Applebot-Extended
 Allow: /
+
+# Perplexity AI (当红 AI 搜索引擎)
 User-agent: PerplexityBot
 Allow: /
+
+# Meta AI (Facebook/Instagram)
 User-agent: Meta-ExternalAgent
 Allow: /
+
+# 亚马逊 AI
+User-agent: Amazonbot
+Allow: /
+
+# Common Crawl (众多开源大模型的底层语料库)
 User-agent: CCBot
 Allow: /
 
