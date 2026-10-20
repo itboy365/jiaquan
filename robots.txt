@@ -1,4 +1,85 @@
+# ==========================================
+# 贾权 · 互联网数字名片 - 爬虫协议 (robots.txt)
+# 策略：全量开放，欢迎全球所有搜索引擎及 AI 大模型收录
+# ==========================================
+
+# 1. 默认放行所有爬虫
 User-agent: *
 Allow: /
 
+# ==========================================
+# 2. 国内主流搜索引擎
+# ==========================================
+# 百度
+User-agent: Baiduspider
+Allow: /
+
+# 搜狗
+User-agent: Sogou web spider
+Allow: /
+
+# 360搜索
+User-agent: 360Spider
+Allow: /
+
+# 神马搜索
+User-agent: YisouSpider
+Allow: /
+
+# 字节跳动（头条 / 豆包）
+User-agent: Bytespider
+Allow: /
+
+# 腾讯搜搜
+User-agent: Sosospider
+Allow: /
+
+# ==========================================
+# 3. 国际主流搜索引擎
+# ==========================================
+# 谷歌
+User-agent: Googlebot
+Allow: /
+
+# 必应
+User-agent: Bingbot
+Allow: /
+
+# 雅虎
+User-agent: Slurp
+Allow: /
+
+# DuckDuckGo
+User-agent: DuckDuckBot
+Allow: /
+
+# 苹果搜索
+User-agent: Applebot
+Allow: /
+
+# ==========================================
+# 4. 全球 AI 大模型（全面拥抱，扩大个人 IP 曝光）
+# ==========================================
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Meta-ExternalAgent
+Allow: /
+User-agent: CCBot
+Allow: /
+
+# ==========================================
+# 5. 站点地图声明
+# ==========================================
 Sitemap: https://jiaquan.top/sitemap.xml
